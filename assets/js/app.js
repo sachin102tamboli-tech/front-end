@@ -10,7 +10,7 @@ const postContainer = document.getElementById('postContainer')
 const spinner = document.getElementById('spinner')
 const author = document.getElementById('author')
 
-let baseUrl = "http://localhost:3000"
+let baseUrl = "https://server2-gold-five.vercel.app";
 let postUrl = `${baseUrl}/blogs`
 
 let postArr = []
@@ -72,7 +72,7 @@ function createCards(arr){
 
 function onsubmit(eve){
     eve.preventDefault()
-    // spinner.classList.remove('d-none')
+     spinner.classList.remove('d-none')
     let obj = {
         title : titleControl.value,
         content : bodyControl.value,
@@ -94,6 +94,7 @@ function onsubmit(eve){
     .then(res=>{
         createCard(res.data)
         console.log(res.data)
+        snackbar('Record Added Succesfully','success')
     })
     .catch(err=>{
 
@@ -199,6 +200,7 @@ function onUpdate(ele){
 })
     .then(()=>{
         updateOnui(updatedObj)
+        snackbar('Record Updated Succesfully','success')
     })
     .catch(err=>{
         snackbar(err,'error')
@@ -270,6 +272,7 @@ function onRemove(ele){
     })
     .then(data=> {
         document.getElementById(removeId).remove()
+        snackbar('Record Deleted Succesfully','success')
     })
     .catch(err=>{
         snackbar(err,"error")
